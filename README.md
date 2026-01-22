@@ -1,5 +1,10 @@
 # IBM Model 1: Spanish to English Translation
 
+## Team 8
+- Sabiha Tahsin Soha
+- Halleluyah Brhanemesqel
+- Harshith Ravi Kopparam
+
 Implementation of IBM Model 1 statistical machine translation using the Europarl parallel corpus.
 
 ## Overview
