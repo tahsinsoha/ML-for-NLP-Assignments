@@ -3,6 +3,7 @@
 Translation table generation and perplexity comparison for IBM Model 1
 """
 
+import os
 import math
 import random
 import pickle
@@ -11,7 +12,8 @@ from typing import List, Tuple
 
 from config import (
     TOP_N_SOURCE_WORDS, TOP_N_TRANSLATIONS, 
-    PREPROCESSED_DATA_FILE, FINAL_MODEL_FILE
+    PREPROCESSED_DATA_FILE, FINAL_MODEL_FILE,
+    TABLES_DIR, TRANSLATION_TABLE_FILE, PERPLEXITY_FILE
 )
 from training import IBMModel1
 
@@ -32,9 +34,7 @@ def get_top_translations(model: IBMModel1, source_word: str, n: int = 5) -> List
 
 
 def sentence_log2_probability(model: IBMModel1, source_sent: List[str], target_sent: List[str]) -> float:
-    """
-    log₂ P(e|f) = Σⱼ log₂( (1/(l+1)) × Σᵢ t(eⱼ|fᵢ) )
-    """
+    """log₂ P(e|f) = Σⱼ log₂( (1/(l+1)) × Σᵢ t(eⱼ|fᵢ) )"""
     source_with_null = ["NULL"] + source_sent
     l_plus_1 = len(source_with_null)
     
@@ -52,29 +52,16 @@ def sentence_log2_probability(model: IBMModel1, source_sent: List[str], target_s
 
 
 def log2_perplexity(model: IBMModel1, source_sent: List[str], target_sent: List[str]) -> float:
-    """
-    log₂ PP = -Σ log₂ p(e|f)
-    """
+    """log₂ PP = -Σ log₂ p(e|f)"""
     log2_prob = sentence_log2_probability(model, source_sent, target_sent)
     if len(target_sent) == 0:
         return float('inf')
     return -log2_prob
 
 
-def perplexity(model: IBMModel1, source_sent: List[str], target_sent: List[str]) -> float:
-    """
-    PP = 2^(-log₂_prob)
-    """
-    log2_pp = log2_perplexity(model, source_sent, target_sent)
-    if log2_pp == float('inf'):
-        return float('inf')
-    if log2_pp > 1000:
-        return float('inf')
-    return math.pow(2, log2_pp)
-
-
-def print_translation_tables(model: IBMModel1, parallel_data: List[Tuple[List[str], List[str]]]):
-    print(f"\nTranslation Tables: Top {TOP_N_TRANSLATIONS} translations for {TOP_N_SOURCE_WORDS} most common Spanish words\n")
+def generate_translation_tables(model: IBMModel1, parallel_data: List[Tuple[List[str], List[str]]]) -> str:
+    lines = []
+    lines.append(f"Top {TOP_N_TRANSLATIONS} translations for {TOP_N_SOURCE_WORDS} most common Spanish words:\n")
     
     source_freq = Counter()
     for f_sent, e_sent in parallel_data:
@@ -82,19 +69,37 @@ def print_translation_tables(model: IBMModel1, parallel_data: List[Tuple[List[st
     
     most_common = source_freq.most_common(TOP_N_SOURCE_WORDS)
     
+    # Calculate column widths
+    max_word_len = max(len(word) for word, _ in most_common)
+    max_word_len = max(max_word_len, len("Spanish"))
+    
+    # Build table with proper alignment
+    lines.append(f"{'Spanish':<{max_word_len}} {'Freq':>8}  {'#1':<20} {'#2':<20} {'#3':<20} {'#4':<20} {'#5':<20}")
+    lines.append("-" * (max_word_len + 8 + 5 * 22))
+    
     for source_word, freq in most_common:
-        print(f"'{source_word}' (freq: {freq})")
         translations = get_top_translations(model, source_word, TOP_N_TRANSLATIONS)
-        for rank, (target_word, prob) in enumerate(translations, 1):
-            print(f"  {rank}. '{target_word}': {prob:.6f}")
-        print()
+        trans_strs = [f"{t} ({p:.3f})" for t, p in translations]
+        while len(trans_strs) < 5:
+            trans_strs.append("-")
+        
+        line = f"{source_word:<{max_word_len}} {freq:>8}  "
+        line += "  ".join(f"{s:<20}" for s in trans_strs)
+        lines.append(line)
+    
+    return "\n".join(lines)
 
 
-def compare_perplexity(model: IBMModel1, parallel_data: List[Tuple[List[str], List[str]]]):
-    print("Perplexity Comparison: Real vs Random Translations\n")
+def generate_perplexity_comparison(model: IBMModel1, parallel_data: List[Tuple[List[str], List[str]]]) -> str:
+    lines = []
+    lines.append("Perplexity Comparison: Real vs Random Translations\n")
+    lines.append(f"{'#':<4} {'log₂ PP (Real)':>18} {'log₂ PP (Random)':>20}")
+    lines.append("-" * 42)
     
     target_vocab_list = list(model.target_vocab)
     sample_indices = random.sample(range(len(parallel_data)), 5)
+    
+    details = []
     
     for i, idx in enumerate(sample_indices, 1):
         f_sent, e_sent_real = parallel_data[idx]
@@ -103,33 +108,46 @@ def compare_perplexity(model: IBMModel1, parallel_data: List[Tuple[List[str], Li
         log2_ppl_real = log2_perplexity(model, f_sent, e_sent_real)
         log2_ppl_random = log2_perplexity(model, f_sent, e_sent_random)
         
-        print(f"Example {i}:")
-        print(f"  Source (Spanish):  {' '.join(f_sent[:12])}{'...' if len(f_sent) > 12 else ''}")
-        print(f"  Real translation:  {' '.join(e_sent_real[:12])}{'...' if len(e_sent_real) > 12 else ''}")
-        print(f"  Random sentence:   {' '.join(e_sent_random[:12])}{'...' if len(e_sent_random) > 12 else ''}")
-        print(f"  log₂ PP (real):   {log2_ppl_real:,.2f}")
-        print(f"  log₂ PP (random): {log2_ppl_random:,.2f}")
+        lines.append(f"{i:<4} {log2_ppl_real:>18,.2f} {log2_ppl_random:>20,.2f}")
         
-        if log2_ppl_real < log2_ppl_random:
-            print(f"  Result: Real translation has lower perplexity (diff: {log2_ppl_random - log2_ppl_real:,.2f} bits)")
-        else:
-            print(f"  Result: Unexpected - random has lower perplexity")
-        print()
+        details.append(f"\nExample {i}:")
+        details.append(f"  Source: {' '.join(f_sent[:10])}...")
+        details.append(f"  Real:   {' '.join(e_sent_real[:10])}...")
+        details.append(f"  Random: {' '.join(e_sent_random[:10])}...")
+    
+    lines.append("\nDetails:")
+    lines.extend(details)
+    
+    return "\n".join(lines)
 
 
 def main():
     random.seed(42)
+    os.makedirs(TABLES_DIR, exist_ok=True)
     
     print(f"Loading data from {PREPROCESSED_DATA_FILE}...")
     parallel_data = load_preprocessed_data(PREPROCESSED_DATA_FILE)
-    print(f"Loaded {len(parallel_data)} sentence pairs.\n")
+    print(f"Loaded {len(parallel_data)} sentence pairs.")
     
     print(f"Loading model from {FINAL_MODEL_FILE}...")
     model = IBMModel1.load(FINAL_MODEL_FILE)
     print(f"Model loaded ({model.current_iteration} iterations)\n")
     
-    print_translation_tables(model, parallel_data)
-    compare_perplexity(model, parallel_data)
+    # Generate and save translation tables
+    tables = generate_translation_tables(model, parallel_data)
+    with open(TRANSLATION_TABLE_FILE, 'w') as f:
+        f.write(tables)
+    print(f"Translation tables saved to {TRANSLATION_TABLE_FILE}")
+    print(tables)
+    
+    print("\n")
+    
+    # Generate and save perplexity comparison
+    perplexity = generate_perplexity_comparison(model, parallel_data)
+    with open(PERPLEXITY_FILE, 'w') as f:
+        f.write(perplexity)
+    print(f"Perplexity comparison saved to {PERPLEXITY_FILE}")
+    print(perplexity)
 
 
 if __name__ == "__main__":

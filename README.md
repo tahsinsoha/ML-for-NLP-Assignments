@@ -11,11 +11,6 @@ Implementation of IBM Model 1 statistical machine translation using the Europarl
 
 This project implements the Expectation-Maximization (EM) algorithm for IBM Model 1 to learn word-level translation probabilities from Spanish-English parallel text.
 
-## Requirements
-
-- Python 3.7+
-- No external dependencies (uses only standard library)
-
 ## Quick Start
 
 ```bash
@@ -27,17 +22,22 @@ This runs the complete pipeline:
 2. **Training** - Trains IBM Model 1 using EM algorithm
 3. **Analysis** - Generates translation tables and perplexity comparisons
 
+## Results
+
+- [Translation Tables](tables/translation_tables.txt) - Top translations for most common Spanish words
+- [Perplexity Comparison](tables/perplexity_comparison.txt) - Real vs random translation analysis
+
+## Requirements
+
+- Python 3.7+
+- No external dependencies (uses only standard library)
+
 ## Running Individual Steps
 
 ```bash
-# Step 1: Preprocess data
-python3 preprocessing.py
-
-# Step 2: Train model
-python3 training.py
-
-# Step 3: Generate translation tables and perplexity analysis
-python3 translation_tables.py
+python3 preprocessing.py       # Step 1: Preprocess data
+python3 training.py            # Step 2: Train model
+python3 translation_tables.py  # Step 3: Generate results
 ```
 
 ## Configuration
@@ -60,22 +60,15 @@ TOP_N_TRANSLATIONS = 5      # Translations per word
 ## Output Files
 
 ```
+tables/
+├── translation_tables.txt    # Translation probability tables
+└── perplexity_comparison.txt # Perplexity analysis results
+
 checkpoints/
-├── model_iter_1.pkl    # Checkpoint after iteration 1
-├── model_iter_2.pkl    # Checkpoint after iteration 2
-├── ...
-└── model_final.pkl     # Final trained model
+├── model_iter_*.pkl          # Checkpoints after each iteration
+└── model_final.pkl           # Final trained model
 
-preprocessed_data.pkl   # Tokenized sentence pairs
-```
-
-## Resuming Training
-
-Training automatically resumes from the latest checkpoint:
-
-```bash
-# Change NUM_EM_ITERATIONS in config.py to a higher number
-python3 training.py  # Resumes from last checkpoint
+preprocessed_data.pkl         # Tokenized sentence pairs
 ```
 
 ## Project Structure
