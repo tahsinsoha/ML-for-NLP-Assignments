@@ -1,0 +1,37 @@
+Perplexity scores for Real sentences from the training data vs
+randomly-sampled target-language (English) sentences of the same length.
+
+#        log₂ PP (Real)     log₂ PP (Random)
+------------------------------------------
+1                103.76             2,519.62
+2                175.67             2,841.69
+3                238.94             3,818.46
+4                248.84             4,260.10
+5                121.45             2,586.73
+
+Details:
+
+Example 1 (22 words):
+  Source (Spanish): deploro , al igual que el ponente , que las cifras presentadas en el informe no cubran todas las ayudas estatales .
+  Real Translation from Training data(English): like the rapporteur , i deplore the fact that the figures given in the report do not cover all state aid .
+  Random (English): electronic cited represent persecuting super situations hastily dwindling perceptible congratulatory conceive untrue timeframe competitiveness eastern beets plainly j graco cards prominence decreased
+
+Example 2 (30 words):
+  Source (Spanish): aunque la renovación urbana de nuestras ciudades es muy importante , es necesario buscar siempre un equilibrio en nuestras políticas entre la promoción del desarrollo rural y la mejora de las vidas de los habitantes de las ciudades .
+  Real Translation from Training data(English): while urban renewal in our cities is very important we must always strike a balance in our policies between promoting rural development and improving the lives of city dwellers .
+  Random (English): ill-fated enhancement fours grants vagueness abc hence gnp poul simply injurious judicial use skies visible propensity secondly streamlining canada meda burden deplore turnout fascists council setting-up benefiting description walks marseilles
+
+Example 3 (39 words):
+  Source (Spanish): dicho esto , creo que la responsabilidad de la unión , es decir , la suya , pero también la nuestra , es comenzar a trabajar para superar este carácter provisional de la resolución 1244 e imaginar un escenario futuro para toda la región .
+  Real Translation from Training data(English): having said this , the eu ' s responsibility , which is both yours and ours , is to try and move beyond the provisional nature of resolution 1244 and devise a future scenario for the whole region .
+  Random (English): c5-0341/1999 sebastian choice erratic regulatory presidency denominator framework spine guatemala findings vu spinelessness reconstruction forecasts sad challenged de-stabilisation grossetête quota final therefore wye negotiators plea non-essential chances spain depopulation neighbourhood reproductive poet original vocational articulated wound discontinue social-democratic begin
+
+Example 4 (46 words):
+  Source (Spanish): ni una información , ni una consulta ha llegado al parlamento europeo durante este proceso ; ni sobre la asociación del reino unido , ni sobre la incorporación de grecia , ni sobre las negociaciones con noruega o islandia .
+  Real Translation from Training data(English): not a single piece of information , nor a single consultation , has been addressed to parliament during this process ; neither on the association of the united kingdom , nor on the incorporation of greece , nor on the negotiations with norway and iceland .
+  Random (English): micro-states disturbance accidents globalised insignificant quantitative hold products rome suitable monthly motherhood confusing learns anti-racism action fit bureau disenchanted via admire speech proof via quantity commonplace ulster heritage identifies pleased need made outer unthinkable principle refugee earnestly teratogenic lever simply sustain enshrine omission exceptions overturned decide
+
+Example 5 (22 words):
+  Source (Spanish): pero no se trata únicamente de una reforma burocrática , sino más bien de una demostración de buena voluntad ante el ciudadano .
+  Real Translation from Training data(English): this is not just about bureaucratic reform , however ; rather , it is about showing good will towards the citizens .
+  Random (English): hindrances indignant nilly devise convergence expense college sprung abstention fear-mongers marinos reap racists reasonably extinction 15% maria encourage layers breakdown cancers albanians
