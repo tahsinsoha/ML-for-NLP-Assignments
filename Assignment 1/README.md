@@ -52,7 +52,7 @@ Edit `config.py` to change parameters:
 
 ```python
 NUM_TRAINING_PAIRS = 10000  # Number of sentence pairs
-NUM_EM_ITERATIONS = 5       # EM iterations
+NUM_EM_ITERATIONS = 15       # EM iterations
 TOP_N_SOURCE_WORDS = 10     # Source words to display
 TOP_N_TRANSLATIONS = 5      # Translations per word
 ```
