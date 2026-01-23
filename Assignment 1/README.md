@@ -5,7 +5,7 @@
 - Halleluyah Brhanemesqel
 - Harshith Ravi Kopparam
 
-We worked on this assignment collaboratively—coding, debugging, and writing together as a team.
+We pair programmed throughout this assignment, with all team members contributing equally to the code, debugging, and writeup. 
 
 ## Part 1: Evaluating Machine Translation
 
