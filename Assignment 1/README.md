@@ -5,6 +5,8 @@
 - Halleluyah Brhanemesqel
 - Harshith Ravi Kopparam
 
+We worked on this assignment collaboratively—coding, debugging, and writing together as a team.
+
 ## Part 1: Evaluating Machine Translation
 
 See [ML for NLP Team 8 Part 1.pdf](ML%20for%20NLP%20Team%208%20Part%201.pdf)
