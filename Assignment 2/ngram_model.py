@@ -181,27 +181,3 @@ class NGramModel:
         
         print(f"Model loaded from {filepath}")
         return model
-
-
-if __name__ == "__main__":
-    sentences = [
-        ["the", "cat", "sat", "on", "the", "mat"],
-        ["the", "dog", "sat", "on", "the", "rug"],
-        ["the", "cat", "chased", "the", "dog"],
-    ]
-    
-    model = NGramModel(n=3)
-    model.collect_counts(sentences)
-    model.compute_probabilities()
-    
-    print("\nSample probabilities:")
-    print(f"  P('sat' | 'cat') = {model.get_probability('sat', ('cat',)):.4f}")
-    print(f"  P('the' | '<START>') = {model.get_probability('the', (START_TOKEN,)):.4f}")
-    
-    test_sent = ["the", "cat", "sat"]
-    log_prob = model.prob_of_sentence(test_sent)
-    print(f"\nlog P('{' '.join(test_sent)}') = {log_prob:.4f}")
-    
-    print("\nGenerated sentence:")
-    generated = model.generate_sentence()
-    print(f"  {' '.join(generated)}")

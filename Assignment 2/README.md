@@ -21,6 +21,20 @@ Implementation of a 4-gram language model for English, trained on the Europarl c
 - **Sentences**: ~50,000
 - **Register**: Formal European Parliament proceedings
 
+## Preprocessing
+
+**Tokenizer:** Custom tokenizer that:
+- Lowercases all text (reduces vocabulary size by merging case variants)
+- Separates punctuation marks (.,!?;:"'()[]{}) from words using regex
+- Splits on whitespace
+- Removes empty tokens
+
+Example: `"Hello, world!"` → `["hello", ",", "world", "!"]`
+
+**Unknown Word Handling:**
+- Words appearing fewer than 2 times are replaced with `<UNK>`
+- Reduces vocabulary size while preserving frequent patterns
+
 ## Quick Start
 
 ```bash
@@ -49,6 +63,9 @@ When an n-gram is unseen, back off to shorter context with discount:
 S(w | w1, w2, w3) = count(w1,w2,w3,w) / count(w1,w2,w3)  if seen
                   = 0.4 × S(w | w2, w3)                   otherwise
 ```
+
+### Model Persistence
+The trained model (counts and probabilities) is saved to `models/ngram_model.pkl`, allowing generation and evaluation without retraining.
 
 ## Results
 
