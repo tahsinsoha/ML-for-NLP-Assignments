@@ -61,7 +61,7 @@ class NGramModel:
                 window.append(token)
                 window = window[1:]  # Slide window
                 
-                # Extract context and last token (professor's approach)
+                # Extract context and last token 
                 lasttoken = window[-1]
                 
                 # Count n-grams of all orders (1 to n)
@@ -199,7 +199,7 @@ class NGramModel:
         words = list(distribution.keys())
         probs = list(distribution.values())
         
-        # Normalize probabilities (should already sum to 1, but just in case)
+        # Normalize probabilities 
         total = sum(probs)
         probs = [p / total for p in probs]
         
