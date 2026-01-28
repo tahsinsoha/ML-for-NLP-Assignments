@@ -54,7 +54,7 @@ This runs the complete pipeline:
 - `<UNK>` - Unknown/rare word marker
 
 ### N-gram Order
-Default: **4-gram** (n=4), as specified by the professor
+Default: **4-gram** (n=4)
 
 For a 4-gram model, we estimate:
 ```
