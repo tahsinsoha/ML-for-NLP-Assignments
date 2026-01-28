@@ -203,25 +203,3 @@ Assignment 2/
 ├── run_pipeline.sh        # Run all steps
 └── README.md              # This file
 ```
-
-## Implementation Notes
-
-### Key Design Decisions
-
-1. **Data Structure**: Following Professor Rudnick's approach, we use `defaultdict(Counter)` to store n-gram counts efficiently:
-   ```python
-   counts[context][word] = count
-   ```
-
-2. **Sliding Window**: We pad sentences with `<START>` tokens and slide a window across to collect all n-grams.
-
-3. **Multi-order Storage**: We store counts and probabilities for all orders (unigram through n-gram) to support backoff smoothing.
-
-4. **Vocabulary Handling**: Rare words are replaced with `<UNK>` during preprocessing, not at inference time, ensuring consistent treatment.
-
-### Potential Extensions
-
-- **Interpolation Smoothing**: Use weighted combination instead of backoff
-- **Kneser-Ney Smoothing**: More sophisticated smoothing for better handling of rare events
-- **4-gram or 5-gram models**: With sufficient data, higher-order models may perform better
-- **Perplexity vs N analysis**: Compare perplexity for different N values
