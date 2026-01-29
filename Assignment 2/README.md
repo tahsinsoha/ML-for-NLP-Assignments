@@ -77,22 +77,6 @@ The trained model (counts and probabilities) is saved to `models/ngram_model.pkl
 | Vocabulary | 14,617 |
 | 4-gram contexts | 671,649 |
 
-### Perplexity
-| Set | Perplexity |
-|-----|------------|
-| Train (sample) | 2.93 |
-| Test | 181.78 |
-
-### Real vs Shuffled Sentences
-
-The model assigns higher probability to properly ordered sentences:
-
-| Sentence | Log P |
-|----------|-------|
-| "we really cannot tolerate behaviour of this kind !" | -61.26 |
-| "tolerate we ! kind this cannot really of behaviour" | -90.58 |
-| **Difference** | **29.3 better** |
-
 ## Sample Generated Sentences
 
 1. i do not usually speak too long .
