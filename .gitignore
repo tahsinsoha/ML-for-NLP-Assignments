@@ -9,6 +9,10 @@ checkpoints/
 europarl_data/
 preprocessed_data.pkl
 
+# Assignment 2 generated files
+Assignment 2/models/
+Assignment 2/output/
+
 # Output logs
 pipeline_output.txt
 pipeline_outputUntil5.txt
