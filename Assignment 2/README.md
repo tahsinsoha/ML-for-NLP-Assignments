@@ -45,7 +45,7 @@ Or run individually:
 ```bash
 python3 preprocessing.py   # Download data, tokenize, build vocabulary
 python3 training.py        # Train 4-gram model
-python3 evaluate.py        # Compute perplexity
+python3 evaluate.py        # Compute Sentence Probability
 python3 generate.py        # Generate sentences
 ```
 
@@ -60,12 +60,12 @@ python3 generate.py        # Generate sentences
 
 When an n-gram is unseen, back off to shorter context with discount:
 ```
-S(w | w1, w2, w3) = count(w1,w2,w3,w) / count(w1,w2,w3)  if seen
-                  = 0.4 × S(w | w2, w3)                   otherwise
+S(w | w1, w2, w3) = count(w1,w2,w3,w) / count(w1,w2,w3)     # if seen
+                  = 0.4 × S(w | w2, w3)                     # otherwise
 ```
 
 ### Model Persistence
-The trained model (counts and probabilities) is saved to `models/ngram_model.pkl`, allowing generation and evaluation without retraining.
+The trained model (counts and probabilities) is saved to [`models/ngram_model.pkl`](https://drive.google.com/drive/folders/1WSazkU_zG83_SkGuSBkk-3GZxG7JOUzi?usp=sharing), allowing generation and evaluation without retraining. 
 
 ## Results
 
@@ -98,6 +98,6 @@ The trained model (counts and probabilities) is saved to `models/ngram_model.pkl
 ├── ngram_model.py      # NGramModel class
 ├── training.py         # Training script
 ├── generate.py         # Sentence generation
-├── evaluate.py         # Perplexity evaluation
+├── evaluate.py         # Sentence Probability Evaluation
 └── run_pipeline.sh     # Run all steps
 ```
