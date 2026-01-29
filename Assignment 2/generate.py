@@ -49,18 +49,8 @@ def main():
     print(f"\nSamples saved to {SAMPLES_FILE}")
     
     print(f"\n{'='*60}")
-    print("Interactive Generation (press Ctrl+C to exit)")
+    print("Generation complete!")
     print("=" * 60)
-    
-    try:
-        while True:
-            input("\nPress Enter to generate a new sentence...")
-            sentence = model.generate_sentence(max_length=40)
-            print(f"  → {' '.join(sentence)}")
-            log_prob = model.prob_of_sentence(sentence)
-            print(f"    (log probability: {log_prob:.4f})")
-    except KeyboardInterrupt:
-        print("\n\nDone!")
 
 
 if __name__ == "__main__":

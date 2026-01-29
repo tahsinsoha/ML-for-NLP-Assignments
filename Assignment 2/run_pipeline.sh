@@ -26,7 +26,7 @@ echo ""
 
 echo "Step 4: Generation"
 echo "----------------------------------------------"
-python3 generate.py <<< ""
+python3 generate.py
 echo ""
 
 echo "=============================================="
@@ -36,4 +36,3 @@ echo ""
 echo "Output files:"
 echo "  - models/ngram_model.pkl (trained model)"
 echo "  - output/generated_samples.txt (sample sentences)"
-echo "  - output/perplexity_results.txt (evaluation results)"
