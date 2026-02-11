@@ -1,0 +1,6 @@
+checkpoints/
+europarl_data/
+tables/alignments.pkl
+Explain.md
+preprocessed_data.pkl
+__pycache__/

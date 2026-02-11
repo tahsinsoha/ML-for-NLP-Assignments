@@ -1,0 +1,52 @@
+Top 5 Most Common Phrases by Length (5--1), where each punctuation mark is treated as a single token
+
+
+Phrase length 5  (132 unique pairs)
+
+Source (Spanish)                         Target (English)                            cost(f|e)    cost(e|f)   count
+-------------------------------------------------------------------------------------------------------------------
+el debate queda cerrado .                the debate is closed .                        -0.0000      -0.0000       4
+reanudación del período de sesiones      resumption of the session                     -0.0000      -0.0000       1
+parlamento siempre ha adoptado .         house has always adopted .                    -0.0000      -0.0000       1
+el caso de alexander nikitin             the case of alexander nikitin                 -0.0000      -0.0000       1
+caso de alexander nikitin .              case of alexander nikitin .                   -0.0000      -0.0000       1
+
+Phrase length 4  (316 unique pairs)
+
+Source (Spanish)                         Target (English)                            cost(f|e)    cost(e|f)   count
+-------------------------------------------------------------------------------------------------------------------
+el debate queda cerrado                  the debate is closed                          -0.0000      -0.0000       4
+debate queda cerrado .                   debate is closed .                            -0.0000      -0.0000       4
+la votación tendrá lugar                 the vote will take place                      -0.0000      -0.0000       4
+votación tendrá lugar mañana             vote will take place tomorrow                 -0.0000      -0.0000       4
+las ayudas estatales .                   state aid .                                    0.5850      -0.0000       4
+
+Phrase length 3  (711 unique pairs)
+
+Source (Spanish)                         Target (English)                            cost(f|e)    cost(e|f)   count
+-------------------------------------------------------------------------------------------------------------------
+los estados miembros                     member states                                  0.5850       0.2801      14
+las ayudas estatales                     state aid                                      1.0704      -0.0000      10
+señora presidenta ,                      madam president ,                             -0.0000      -0.0000       8
+señor presidente ,                       mr president ,                                 0.2630      -0.0000       5
+el debate queda                          the debate is                                 -0.0000      -0.0000       4
+
+Phrase length 2  (1740 unique pairs)
+
+Source (Spanish)                         Target (English)                            cost(f|e)    cost(e|f)   count
+-------------------------------------------------------------------------------------------------------------------
+unión europea                            european union                                -0.0000      -0.0000      25
+señor presidente                         mr president                                   0.0566      -0.0000      25
+las regiones                             regions                                        0.3561       0.0566      25
+señora presidenta                        madam president                                0.0589       0.1699      24
+mercancías peligrosas                    dangerous goods                               -0.0000      -0.0000      18
+
+Phrase length 1  (2676 unique pairs)
+
+Source (Spanish)                         Target (English)                            cost(f|e)    cost(e|f)   count
+-------------------------------------------------------------------------------------------------------------------
+.                                        .                                             -0.0000       0.0035     823
+y                                        and                                            0.0185       0.0668     232
+no                                       not                                            0.0110       0.2704     131
+comisión                                 commission                                     0.0111       0.2814     130
+en                                       in                                             0.0661       0.5469     128
