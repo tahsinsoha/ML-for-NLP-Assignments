@@ -37,7 +37,7 @@ This runs the complete pipeline:
 
 ### Requirements
 
-- Python 3.7+
+- Python 3.13.2 or Python 3.12.4
 - No external dependencies (uses only standard library)
 
 ### Running Individual Steps
