@@ -1,0 +1,145 @@
+Phrase-Based MT Translation Results
+============================================================
+Phrase pairs: 5571
+Beam width: 200
+
+------------------------------------------------------------
+Sentence 1:
+  Spanish   : la comisión europea
+  Reference : the european commission
+  Best      : the european commission
+  Cost      : 13.07 bits
+  Match?    : YES
+  Top 5:
+    1. the european commission                             cost=13.07
+    2. the commission european                             cost=17.68
+    3. the committee european                              cost=23.72
+    4. the european committee                              cost=25.09
+    5. the european commission is                          cost=27.29
+
+------------------------------------------------------------
+Sentence 2:
+  Spanish   : señor presidente , este informe es importante
+  Reference : mr president , this report is important
+  Best      : mr president , this report is important
+  Cost      : 26.70 bits
+  Match?    : YES
+  Top 5:
+    1. mr president , this report is important             cost=26.70
+    2. mr president , this report it is important          cost=29.76
+    3. mr president , this is important report             cost=32.44
+    4. mr president , this report it is important to       cost=32.64
+    5. mr president , this important report is             cost=36.02
+
+------------------------------------------------------------
+Sentence 3:
+  Spanish   : la unión europea
+  Reference : the european union
+  Best      : the european union
+  Cost      : 10.02 bits
+  Match?    : YES
+  Top 5:
+    1. the european union                                  cost=10.02
+    2. the union european                                  cost=20.97
+    3. european union the                                  cost=26.98
+    4. s european union                                    cost=27.40
+    5. on european union                                   cost=29.18
+
+------------------------------------------------------------
+Sentence 4:
+  Spanish   : la política regional
+  Reference : regional policy
+  Best      : the regional policy
+  Cost      : 21.28 bits
+  Match?    : no
+  Top 5:
+    1. the regional policy                                 cost=21.28
+    2. s regional policy                                   cost=24.50
+    3. the on regional policy                              cost=26.63
+    4. regional policy                                     cost=27.01
+    5. the policy regional                                 cost=28.59
+
+------------------------------------------------------------
+Sentence 5:
+  Spanish   : los estados miembros
+  Reference : member states
+  Best      : member states
+  Cost      : 12.07 bits
+  Match?    : YES
+  Top 5:
+    1. member states                                       cost=12.07
+    2. the member states                                   cost=14.78
+    3. those member states                                 cost=21.87
+    4. member states themselves                            cost=22.21
+    5. states                                              cost=23.13
+
+------------------------------------------------------------
+Sentence 6:
+  Spanish   : este debate es importante
+  Reference : this debate is important
+  Best      : this debate is important
+  Cost      : 21.83 bits
+  Match?    : YES
+  Top 5:
+    1. this debate is important                            cost=21.83
+    2. this is important debate                            cost=27.69
+    3. this debate is important to                         cost=28.25
+    4. this discussion is important                        cost=29.71
+    5. this debate it is important                         cost=29.83
+
+------------------------------------------------------------
+Sentence 7:
+  Spanish   : el parlamento europeo
+  Reference : the european parliament
+  Best      : the european parliament
+  Cost      : 11.36 bits
+  Match?    : YES
+  Top 5:
+    1. the european parliament                             cost=11.36
+    2. parliament european                                 cost=28.04
+    3. european parliament                                 cost=28.09
+    4. the parliament european                             cost=28.32
+    5. european parliament the                             cost=28.49
+
+------------------------------------------------------------
+Sentence 8:
+  Spanish   : sin embargo , la comisión
+  Reference : however , the commission
+  Best      : however , the commission
+  Cost      : 14.25 bits
+  Match?    : YES
+  Top 5:
+    1. however , the commission                            cost=14.25
+    2. however , the committee                             cost=19.98
+    3. however , the commission is                         cost=25.52
+    4. however the commission ,                            cost=28.87
+    5. the commission , however                            cost=28.94
+
+------------------------------------------------------------
+Sentence 9:
+  Spanish   : mi grupo no ha
+  Reference : my group has not
+  Best      : my group did not
+  Cost      : 17.34 bits
+  Match?    : no
+  Top 5:
+    1. my group did not                                    cost=17.34
+    2. my group has not                                    cost=21.38
+    3. my group has no                                     cost=26.60
+    4. my group was not                                    cost=29.03
+    5. my group not has                                    cost=31.73
+
+------------------------------------------------------------
+Sentence 10:
+  Spanish   : la seguridad es importante
+  Reference : safety is important
+  Best      : the safety is important
+  Cost      : 30.58 bits
+  Match?    : no
+  Top 5:
+    1. the safety is important                             cost=30.58
+    2. the safety it is important                          cost=34.60
+    3. it is important to the safety                       cost=36.40
+    4. the safety is important to                          cost=37.01
+    5. the traffic is important                            cost=37.95
+
